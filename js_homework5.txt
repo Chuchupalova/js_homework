@@ -1,0 +1,65 @@
+ДЗ1
+
+const myObject = {
+  property1: 'Значення1',
+  property2: 'Значення2',
+  property3: 'Значення3',
+  
+  getInfo: function() {
+    Object.keys(this).forEach(key => {
+      if (typeof this[key] !== 'function') {
+        console.log(`${key}: ${this[key]}`);
+      }
+    });
+  }
+};
+
+myObject.getInfo(); // Правильна інформація про об'єкт
+myObject.newProperty = 'Нова властивість!'; // Додали властивість до об'єкта
+myObject.getInfo(); // Виводить всі властивості, включаючи щойно додану.
+
+ДЗ2
+
+var services = {
+  "стрижка": "60 грн",
+  "гоління": "80 грн",
+  "Миття голови": "100 грн"
+};
+
+// Додаємо нову послугу
+services['Розбити скло'] = "200 грн";
+
+function calculatePrice() {
+  var prices = Object.values(services).map(function (priceString) {
+    return parseInt(priceString);
+  });
+
+  return prices.reduce(function (sum, price) {
+    return sum + price;
+  }, 0);
+}
+
+function minPrice() {
+  var prices = Object.values(services).map(function (priceString) {
+    return parseInt(priceString);
+  });
+
+  return Math.min(...prices);
+}
+
+function maxPrice() {
+  var prices = Object.values(services).map(function (priceString) {
+    return parseInt(priceString);
+  });
+
+  return Math.max(...prices);
+}
+
+// Отримуємо результати
+var totalPrice = calculatePrice();
+var minimumPrice = minPrice();
+var maximumPrice = maxPrice();
+
+console.log("Загальна вартість послуг: " + totalPrice + " грн");
+console.log("Мінімальна вартість послуг: " + minimumPrice + " грн");
+console.log("Максимальна вартість послуг: " + maximumPrice + " грн");
