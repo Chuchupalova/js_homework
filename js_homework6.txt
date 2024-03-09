@@ -1,0 +1,53 @@
+Дз 1
+
+function myBlend(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+// Приклад використання:
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+myBlend(arr);
+console.log(arr);
+
+Дз 2
+
+// Припустимо, у вас є об'єкт, що представляє ієрархію компаній
+const companyHierarchy = {
+  companyName: "Головна Компанія",
+  subCompany: {
+    companyName: "Дочірня Компанія",
+    subSubCompany: {
+      companyName: "Внучата Компанія",
+      // Додайте потрібні дані для ієрархії
+    }
+  }
+  // Додайте інші компанії за потребою
+};
+
+function findValueByKey(companyName, hierarchy) {
+  // Перевірка наявності компанії з вказаним ім'ям
+  if (hierarchy.companyName === companyName) {
+    return hierarchy;
+  }
+
+  // Рекурсивний пошук у підкомпаніях
+  for (const key in hierarchy) {
+    if (typeof hierarchy[key] === "object") {
+      const result = findValueByKey(companyName, hierarchy[key]);
+      if (result) {
+        return result;
+      }
+    }
+  }
+
+  // Якщо компанія не знайдена
+  return null;
+}
+
+// Приклад використання:
+const result = findValueByKey("Дочірня Компанія", companyHierarchy);
+
+console.log(result);
